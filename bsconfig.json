@@ -1,0 +1,17 @@
+{
+  "name": "re-unstated-next",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": ["src", "example"],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dependencies": ["reason-react"],
+  "refmt": 3
+}
