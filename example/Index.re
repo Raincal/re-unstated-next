@@ -4,10 +4,14 @@ type counter = {
   increment: unit => unit,
 };
 
+let useState = initial => {
+  React.useReducer((_, action) => action, initial);
+};
+
 let useCounter = (~initialState=0, ()) => {
-  let (count, setCount) = React.useState(_ => initialState);
-  let decrement = () => setCount(_ => count - 1);
-  let increment = () => setCount(_ => count + 1);
+  let (count, setCount) = useState(initialState);
+  let decrement = () => setCount(count - 1);
+  let increment = () => setCount(count + 1);
   {count, decrement, increment};
 };
 
