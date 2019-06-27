@@ -4,11 +4,11 @@ module type Config = {
   let useHook: (~initialState: state=?, unit) => value;
 };
 
-module CreateContainer = (C: Config) => {
+module CreateContainer = (Config: Config) => {
   let context = React.createContext(None);
 
   module ContextProvider = {
-    let makeProps = (~value: C.value, ~children, ()) => {
+    let makeProps = (~value: Config.value, ~children, ()) => {
       "value": Some(value),
       "children": children,
     };
@@ -17,8 +17,8 @@ module CreateContainer = (C: Config) => {
 
   module Provider = {
     [@react.component]
-    let make = (~children, ~initialState: option(C.state)=?) => {
-      let value = C.useHook(~initialState?, ());
+    let make = (~children, ~initialState: option(Config.state)=?) => {
+      let value = Config.useHook(~initialState?, ());
       <ContextProvider value> children </ContextProvider>;
     };
   };
